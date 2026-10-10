@@ -28,6 +28,10 @@ public class PathFinding : MonoBehaviour
             {
                 waypointIndex++;
             }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
