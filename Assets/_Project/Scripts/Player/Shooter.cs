@@ -16,10 +16,12 @@ public class Shooter : MonoBehaviour
 
     [HideInInspector] public bool isFiring = false;
     Coroutine fireCoroutine;
+    AudioManager audioManager;
 
 
     private void Start()
     {
+        audioManager = FindAnyObjectByType<AudioManager>();
         if (useAI)
         {
             isFiring = true; // Start firing bullets automatically if using AI
@@ -60,6 +62,8 @@ public class Shooter : MonoBehaviour
 
             float fireRate = Random.Range(baseFireRate - fireRateVariance, baseFireRate + fireRateVariance); // Randomize the fire rate between 0.1 and 0.5 seconds
             fireRate = Mathf.Clamp(fireRate, minimumFireRate, float.MaxValue); // Clamp the fire rate to a minimum value of 0.1 seconds
+
+            audioManager.PlayShootingSFX();
 
             yield return new WaitForSeconds(fireRate);
         }
