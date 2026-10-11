@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 5182124158344521716}
   - component: {fileID: -2668193761472355184}
   - component: {fileID: 2779141518558820523}
+  - component: {fileID: 4673922005348645134}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -236,3 +237,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damage: 50
+--- !u!114 &4673922005348645134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5052557223785932012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51bece70a1cb9104d83f42cb90e80adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  health: 100
