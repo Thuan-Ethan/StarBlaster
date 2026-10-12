@@ -10,6 +10,34 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip damageSFX;
     [SerializeField][Range(0, 1)] float damageSFXVolume;
 
+    static AudioManager instance;
+
+    public static AudioManager GetInstance()
+    {
+        return instance;
+    }
+
+    private void Awake()
+    {
+        ManageSingleton();
+    }
+
+    void ManageSingleton()
+    {
+        //int instanceCount = FindObjectsByType<AudioManager>(FindObjectsInactive.Include).Length;
+        //if(instanceCount > 1)
+        if(instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+    }
+
     public void PlayShootingSFX()
     {
         if (shootSFX != null)
