@@ -4,14 +4,24 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] float sceneDelay = 1f;
+
+    ScoreManager scoreManager;
+
+    private void Awake()
+    {
+        scoreManager = FindAnyObjectByType<ScoreManager>();
+    }
+
     public void LoadGame()
     {
         SceneManager.LoadScene("SceneLevel 1");
+        scoreManager.ResetScore();
     }
 
     public void LoadGameOver()
     {
-        StartCoroutine(WaitAndLoad("GameOver", 1f));
+        StartCoroutine(WaitAndLoad("GameOver", sceneDelay));
     }
 
     public void LoadMainMenu()
