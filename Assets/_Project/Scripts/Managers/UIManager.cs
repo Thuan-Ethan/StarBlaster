@@ -14,13 +14,20 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         scoreManager = FindAnyObjectByType<ScoreManager>();
-        healthSlider.maxValue = playerHealth.GetHealth();
+
+        if (healthSlider != null && playerHealth != null)
+        {
+            healthSlider.maxValue = playerHealth.GetHealth();
+        }
     }
 
     private void Update()
     {
-        scoreText.text = scoreManager.GetScore().ToString("00000000");
-        healthSlider.value = playerHealth.GetHealth();
-    }
 
+        scoreText.text =
+            scoreManager.GetScore().ToString("00000000");
+
+        healthSlider.value = playerHealth.GetHealth();
+
+    }
 }

@@ -11,12 +11,14 @@ public class Health : MonoBehaviour
     CameraShake cameraShake;
     AudioManager audioManager;
     ScoreManager scoreManager;
+    LevelManager levelManager;
 
     private void Start()
     {
         cameraShake = Camera.main.GetComponent<CameraShake>();
         audioManager = FindAnyObjectByType<AudioManager>();
         scoreManager = FindAnyObjectByType<ScoreManager>();
+        levelManager = FindAnyObjectByType<LevelManager>();
     }
 
     public int GetHealth()
@@ -49,12 +51,21 @@ public class Health : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            if (!isPlayer)
-            {
-                scoreManager.ModifyScore(scoreValue);
-            }
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    void Die()
+    {
+        if (isPlayer)
+        {
+            levelManager.LoadGameOver();
+        }
+        else
+        {
+            scoreManager.ModifyScore(scoreValue);
+        }
+        Destroy(gameObject);
     }
 
     void PlayHitParticles()
